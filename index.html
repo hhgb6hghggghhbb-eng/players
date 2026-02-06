@@ -232,18 +232,6 @@
             border: 1px solid #5a2a8a;
         }
 
-        .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tag-resource { background: #1e3a2033; color: #4ade80; border: 1px solid #2a5a3a; }
-
         .hidden { display: none !important; }
 
         footer {
@@ -280,7 +268,6 @@
         <a href="#veiculos">Veículos</a>
         <a href="#interacao">Interação & RP</a>
         <a href="#gangs">Gangues</a>
-        <a href="#drogas">Drogas & Mercado</a>
         <a href="#voz">Voz & Rádio</a>
         <a href="#emotes">Emotes</a>
         <a href="#interface">Interface</a>
@@ -295,35 +282,33 @@
                 <tr>
                     <th>Tecla</th>
                     <th>Ação</th>
-                    <th>Resource</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><span class="key-badge">T</span></td><td>Abrir chat</td><td><span class="tag tag-resource">sarp-chat</span></td></tr>
-                <tr><td><span class="key-badge">Z</span></td><td>Menu radial</td><td><span class="tag tag-resource">qb-radialmenu</span></td></tr>
-                <tr><td><span class="key-badge">F1</span></td><td>Menu radial (alternativo)</td><td><span class="tag tag-resource">qb-radialmenu</span></td></tr>
-                <tr><td><span class="key-badge">F2</span></td><td>Abrir inventário</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
-                <tr><td><span class="key-badge">TAB</span></td><td>Abrir inventário (alternativo) / Hotbar</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
-                <tr><td><span class="key-badge">F5</span></td><td>Menu de emotes</td><td><span class="tag tag-resource">scully_emotemenu</span></td></tr>
-                <tr><td><span class="key-badge">F11</span></td><td>Alternar proximidade de voz</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">E</span></td><td>Interagir / Abastecer veículo</td><td><span class="tag tag-resource">ox_fuel / ox_target</span></td></tr>
-                <tr><td><span class="key-badge">Left Alt</span></td><td>Targeting (olhar interações) / PTT Rádio</td><td><span class="tag tag-resource">ox_target / pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">L</span></td><td>Trancar/Destrancar veículo</td><td><span class="tag tag-resource">qbx_vehiclekeys</span></td></tr>
-                <tr><td><span class="key-badge">B</span></td><td>Cinto de segurança</td><td><span class="tag tag-resource">qbx_seatbelt</span></td></tr>
-                <tr><td><span class="key-badge">H</span></td><td>Procurar chaves no veículo / Mãos pra cima</td><td><span class="tag tag-resource">qbx_vehiclekeys / emotes</span></td></tr>
-                <tr><td><span class="key-badge">K</span></td><td>Agachar (crouch)</td><td><span class="tag tag-resource">qbx_crouch</span></td></tr>
-                <tr><td><span class="key-badge">O</span></td><td>Trocar de assento no veículo</td><td><span class="tag tag-resource">qbx_noshuff</span></td></tr>
-                <tr><td><span class="key-badge">Y</span></td><td>Controle de veículo (abrir menu)</td><td><span class="tag tag-resource">v-vehControl</span></td></tr>
-                <tr><td><span class="key-badge">X</span></td><td>Cancelar barra de progresso / emote</td><td><span class="tag tag-resource">ox_lib / emotemenu</span></td></tr>
-                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz)</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">R</span></td><td>Recarregar arma</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
-                <tr><td><span class="key-badge">1–5</span></td><td>Hotbar — usar item rápido</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
-                <tr><td><span class="key-badge">U</span></td><td>Ragdoll (cair no chão)</td><td><span class="tag tag-resource">scully_emotemenu</span></td></tr>
-                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">DELETE</span></td><td>Fechar/Sair do rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">F8</span></td><td>Abrir/fechar trapphone</td><td><span class="tag tag-resource">nc-trapphone</span></td></tr>
+                <tr><td><span class="key-badge">T</span></td><td>Abrir chat</td></tr>
+                <tr><td><span class="key-badge">Z</span></td><td>Menu radial</td></tr>
+                <tr><td><span class="key-badge">F1</span></td><td>Menu radial (alternativo)</td></tr>
+                <tr><td><span class="key-badge">F2</span></td><td>Abrir inventário</td></tr>
+                <tr><td><span class="key-badge">TAB</span></td><td>Abrir inventário (alternativo) / Hotbar</td></tr>
+                <tr><td><span class="key-badge">F5</span></td><td>Menu de emotes</td></tr>
+                <tr><td><span class="key-badge">F11</span></td><td>Alternar proximidade de voz</td></tr>
+                <tr><td><span class="key-badge">E</span></td><td>Interagir / Abastecer veículo</td></tr>
+                <tr><td><span class="key-badge">Left Alt</span></td><td>Targeting (olhar interações) / PTT Rádio</td></tr>
+                <tr><td><span class="key-badge">L</span></td><td>Trancar/Destrancar veículo</td></tr>
+                <tr><td><span class="key-badge">B</span></td><td>Cinto de segurança</td></tr>
+                <tr><td><span class="key-badge">H</span></td><td>Procurar chaves no veículo / Mãos pra cima</td></tr>
+                <tr><td><span class="key-badge">K</span></td><td>Agachar (crouch)</td></tr>
+                <tr><td><span class="key-badge">O</span></td><td>Trocar de assento no veículo</td></tr>
+                <tr><td><span class="key-badge">Y</span></td><td>Controle de veículo (abrir menu)</td></tr>
+                <tr><td><span class="key-badge">X</span></td><td>Cancelar barra de progresso / emote</td></tr>
+                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz)</td></tr>
+                <tr><td><span class="key-badge">R</span></td><td>Recarregar arma</td></tr>
+                <tr><td><span class="key-badge">1–5</span></td><td>Hotbar — usar item rápido</td></tr>
+                <tr><td><span class="key-badge">U</span></td><td>Ragdoll (cair no chão)</td></tr>
+                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td></tr>
+                <tr><td><span class="key-badge">DELETE</span></td><td>Fechar/Sair do rádio</td></tr>
+                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td></tr>
+                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td></tr>
             </tbody>
         </table>
     </div>
@@ -401,16 +386,6 @@
         </div>
     </div>
 
-    <!-- DROGAS -->
-    <div class="section" id="drogas">
-        <div class="section-title"><span class="icon">🧪</span> Drogas & Mercado Negro</div>
-        <div class="card-grid">
-            <div class="card"><div class="cmd">/trapphone</div><div class="desc">Abrir/fechar trapphone (também F8)</div><div class="usage">/trapphone</div></div>
-            <div class="card"><div class="cmd">/reputacao</div><div class="desc">Ver sua reputação no mercado negro</div><div class="usage">/reputacao — ou /rep</div></div>
-            <div class="card"><div class="cmd">/minhasplantas</div><div class="desc">Ver blueprints/plantas que você aprendeu</div><div class="usage">/minhasplantas — ou /myblueprints</div></div>
-        </div>
-    </div>
-
     <!-- VOZ & RÁDIO -->
     <div class="section" id="voz">
         <div class="section-title"><span class="icon">🎙️</span> Voz & Rádio</div>
@@ -425,17 +400,16 @@
                 <tr>
                     <th>Tecla</th>
                     <th>Ação</th>
-                    <th>Resource</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz padrão)</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">Left Alt</span></td><td>Push-to-talk rádio</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">F11</span></td><td>Ciclar proximidade de voz</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
-                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">DELETE</span></td><td>Sair do canal de rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
-                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz padrão)</td></tr>
+                <tr><td><span class="key-badge">Left Alt</span></td><td>Push-to-talk rádio</td></tr>
+                <tr><td><span class="key-badge">F11</span></td><td>Ciclar proximidade de voz</td></tr>
+                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td></tr>
+                <tr><td><span class="key-badge">DELETE</span></td><td>Sair do canal de rádio</td></tr>
+                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td></tr>
+                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td></tr>
             </tbody>
         </table>
     </div>
