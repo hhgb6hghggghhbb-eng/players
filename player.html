@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARP — Guia do Jogador</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #e0e6f0;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1a4a 50%, #1a0a2e 100%);
+            border-bottom: 3px solid #a855f7;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a855f7' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+            position: relative;
+        }
+
+        .hero h1 .badge {
+            display: inline-block;
+            background: #a855f7;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            vertical-align: super;
+            margin-left: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            color: #b0a0cc;
+            margin-top: 8px;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 20px auto 0;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px 12px 44px;
+            border: 2px solid #3a1a6a;
+            border-radius: 12px;
+            background: #10081a;
+            color: #e0e6f0;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-container input:focus {
+            border-color: #a855f7;
+        }
+
+        .search-container::before {
+            content: '🔍';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            background: #10081a;
+            color: #b07adf;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #2a1a4a;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #1a1030;
+            color: #d0a0f0;
+            border-color: #a855f7;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #a855f7;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon { font-size: 1.5rem; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            background: #12102a;
+            border: 1px solid #2a1a4a;
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: #a855f7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1);
+        }
+
+        .card .cmd {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #c084fc;
+            margin-bottom: 4px;
+        }
+
+        .card .desc {
+            color: #8a7aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .card .usage {
+            background: #08050f;
+            border: 1px solid #2a1a4a;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #d8b4fe;
+        }
+
+        .card .usage::before {
+            content: '💡 ';
+        }
+
+        .key-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .key-table thead th {
+            background: #12102a;
+            color: #c084fc;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .key-table tbody tr {
+            border-bottom: 1px solid #221a3a;
+            transition: background 0.2s;
+        }
+
+        .key-table tbody tr:hover {
+            background: #12102a;
+        }
+
+        .key-table td {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
+
+        .key-badge {
+            display: inline-block;
+            background: #3a1a6a;
+            color: #d8b4fe;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #5a2a8a;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-resource { background: #1e3a2033; color: #4ade80; border: 1px solid #2a5a3a; }
+
+        .hidden { display: none !important; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #4a5568;
+            font-size: 0.8rem;
+            border-top: 1px solid #221a3a;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🎮 Guia do Jogador <span class="badge">PÚBLICO</span></h1>
+    <p>Todos os comandos e teclas que qualquer jogador pode usar</p>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar comando, tecla ou ação..." oninput="filterAll()">
+    </div>
+</div>
+
+<div class="container">
+
+    <nav class="nav-links">
+        <a href="#teclas">Teclas Principais</a>
+        <a href="#comunicacao">Comunicação</a>
+        <a href="#emergencia">Emergência</a>
+        <a href="#info">Identidade & Info</a>
+        <a href="#veiculos">Veículos</a>
+        <a href="#interacao">Interação & RP</a>
+        <a href="#gangs">Gangues</a>
+        <a href="#drogas">Drogas & Mercado</a>
+        <a href="#voz">Voz & Rádio</a>
+        <a href="#emotes">Emotes</a>
+        <a href="#interface">Interface</a>
+        <a href="#inventario">Inventário</a>
+    </nav>
+
+    <!-- TECLAS PRINCIPAIS -->
+    <div class="section" id="teclas">
+        <div class="section-title"><span class="icon">⌨️</span> Teclas Principais</div>
+        <table class="key-table">
+            <thead>
+                <tr>
+                    <th>Tecla</th>
+                    <th>Ação</th>
+                    <th>Resource</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">T</span></td><td>Abrir chat</td><td><span class="tag tag-resource">sarp-chat</span></td></tr>
+                <tr><td><span class="key-badge">Z</span></td><td>Menu radial</td><td><span class="tag tag-resource">qb-radialmenu</span></td></tr>
+                <tr><td><span class="key-badge">F1</span></td><td>Menu radial (alternativo)</td><td><span class="tag tag-resource">qb-radialmenu</span></td></tr>
+                <tr><td><span class="key-badge">F2</span></td><td>Abrir inventário</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
+                <tr><td><span class="key-badge">TAB</span></td><td>Abrir inventário (alternativo) / Hotbar</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
+                <tr><td><span class="key-badge">F5</span></td><td>Menu de emotes</td><td><span class="tag tag-resource">scully_emotemenu</span></td></tr>
+                <tr><td><span class="key-badge">F11</span></td><td>Alternar proximidade de voz</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">E</span></td><td>Interagir / Abastecer veículo</td><td><span class="tag tag-resource">ox_fuel / ox_target</span></td></tr>
+                <tr><td><span class="key-badge">Left Alt</span></td><td>Targeting (olhar interações) / PTT Rádio</td><td><span class="tag tag-resource">ox_target / pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">L</span></td><td>Trancar/Destrancar veículo</td><td><span class="tag tag-resource">qbx_vehiclekeys</span></td></tr>
+                <tr><td><span class="key-badge">B</span></td><td>Cinto de segurança</td><td><span class="tag tag-resource">qbx_seatbelt</span></td></tr>
+                <tr><td><span class="key-badge">H</span></td><td>Procurar chaves no veículo / Mãos pra cima</td><td><span class="tag tag-resource">qbx_vehiclekeys / emotes</span></td></tr>
+                <tr><td><span class="key-badge">K</span></td><td>Agachar (crouch)</td><td><span class="tag tag-resource">qbx_crouch</span></td></tr>
+                <tr><td><span class="key-badge">O</span></td><td>Trocar de assento no veículo</td><td><span class="tag tag-resource">qbx_noshuff</span></td></tr>
+                <tr><td><span class="key-badge">Y</span></td><td>Controle de veículo (abrir menu)</td><td><span class="tag tag-resource">v-vehControl</span></td></tr>
+                <tr><td><span class="key-badge">X</span></td><td>Cancelar barra de progresso / emote</td><td><span class="tag tag-resource">ox_lib / emotemenu</span></td></tr>
+                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz)</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">R</span></td><td>Recarregar arma</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
+                <tr><td><span class="key-badge">1–5</span></td><td>Hotbar — usar item rápido</td><td><span class="tag tag-resource">ox_inventory</span></td></tr>
+                <tr><td><span class="key-badge">U</span></td><td>Ragdoll (cair no chão)</td><td><span class="tag tag-resource">scully_emotemenu</span></td></tr>
+                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">DELETE</span></td><td>Fechar/Sair do rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">F8</span></td><td>Abrir/fechar trapphone</td><td><span class="tag tag-resource">nc-trapphone</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- COMUNICAÇÃO -->
+    <div class="section" id="comunicacao">
+        <div class="section-title"><span class="icon">💬</span> Comunicação</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/ooc [mensagem]</div><div class="desc">Chat fora do personagem (Out of Character) — tem cooldown</div><div class="usage">/ooc oi pessoal, alguém tem dúvida?</div></div>
+            <div class="card"><div class="cmd">/me [ação]</div><div class="desc">Texto de ação RP visível para jogadores próximos</div><div class="usage">/me acena para o policial</div></div>
+            <div class="card"><div class="cmd">/clear</div><div class="desc">Limpar mensagens do chat</div><div class="usage">/clear</div></div>
+        </div>
+    </div>
+
+    <!-- EMERGÊNCIA -->
+    <div class="section" id="emergencia">
+        <div class="section-title"><span class="icon">🚨</span> Chamadas de Emergência</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/911 [mensagem]</div><div class="desc">Ligar para emergência (polícia + EMS recebem)</div><div class="usage">/911 acidente na rodovia principal</div></div>
+            <div class="card"><div class="cmd">/911a [mensagem]</div><div class="desc">Ligação anônima para 911</div><div class="usage">/911a tiros no centro da cidade</div></div>
+            <div class="card"><div class="cmd">/911e [mensagem]</div><div class="desc">Chamada de emergência médica (EMS)</div><div class="usage">/911e pessoa caída no parque</div></div>
+            <div class="card"><div class="cmd">/311 [mensagem]</div><div class="desc">Ligação não-emergencial</div><div class="usage">/311 preciso de informações</div></div>
+            <div class="card"><div class="cmd">/311a [mensagem]</div><div class="desc">Ligação 311 anônima</div><div class="usage">/311a barulho na vizinhança</div></div>
+        </div>
+    </div>
+
+    <!-- IDENTIDADE -->
+    <div class="section" id="info">
+        <div class="section-title"><span class="icon">🪪</span> Identidade & Informações</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/id</div><div class="desc">Ver seu ID de servidor</div><div class="usage">/id</div></div>
+            <div class="card"><div class="cmd">/crypto</div><div class="desc">Ver saldo de criptomoedas</div><div class="usage">/crypto</div></div>
+            <div class="card"><div class="cmd">/meuvip</div><div class="desc">Ver status do seu VIP</div><div class="usage">/meuvip</div></div>
+            <div class="card"><div class="cmd">/jailtime</div><div class="desc">Ver tempo restante na prisão</div><div class="usage">/jailtime</div></div>
+            <div class="card"><div class="cmd">/jobs</div><div class="desc">Abrir menu de seleção de empregos</div><div class="usage">/jobs</div></div>
+            <div class="card"><div class="cmd">/isfelon</div><div class="desc">Verificar se está sendo procurado</div><div class="usage">/isfelon</div></div>
+        </div>
+    </div>
+
+    <!-- VEÍCULOS -->
+    <div class="section" id="veiculos">
+        <div class="section-title"><span class="icon">🚗</span> Veículos</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/givekeys</div><div class="desc">Dar chaves do veículo ao jogador mais próximo</div><div class="usage">/givekeys</div></div>
+            <div class="card"><div class="cmd">/tow</div><div class="desc">Rebocar ou desrebocar veículo</div><div class="usage">/tow</div></div>
+            <div class="card"><div class="cmd">/getintrunk</div><div class="desc">Entrar no porta-malas de um veículo</div><div class="usage">/getintrunk</div></div>
+            <div class="card"><div class="cmd">/putintrunk</div><div class="desc">Colocar jogador próximo no porta-malas</div><div class="usage">/putintrunk</div></div>
+            <div class="card"><div class="cmd">/claiminsurance</div><div class="desc">Reclamar seguro veicular</div><div class="usage">/claiminsurance</div></div>
+        </div>
+    </div>
+
+    <!-- INTERAÇÃO -->
+    <div class="section" id="interacao">
+        <div class="section-title"><span class="icon">🤝</span> Interação & RP</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/steal</div><div class="desc">Roubar inventário do jogador mais próximo</div><div class="usage">/steal</div></div>
+            <div class="card"><div class="cmd">/report [mensagem]</div><div class="desc">Enviar report para administradores</div><div class="usage">/report jogador bugando no local X</div></div>
+            <div class="card"><div class="cmd">/record</div><div class="desc">Iniciar gravação do Rockstar Editor</div><div class="usage">/record</div></div>
+            <div class="card"><div class="cmd">/clip</div><div class="desc">Iniciar clip</div><div class="usage">/clip</div></div>
+            <div class="card"><div class="cmd">/saveclip</div><div class="desc">Salvar clip atual</div><div class="usage">/saveclip</div></div>
+            <div class="card"><div class="cmd">/editor</div><div class="desc">Abrir Rockstar Editor</div><div class="usage">/editor</div></div>
+            <div class="card"><div class="cmd">/streamermode</div><div class="desc">Ativar modo streamer (oculta informações pessoais)</div><div class="usage">/streamermode</div></div>
+        </div>
+    </div>
+
+    <!-- GANGUES -->
+    <div class="section" id="gangs">
+        <div class="section-title"><span class="icon">💀</span> Gangues & Territórios</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/checkgang</div><div class="desc">Ver informações da sua gang</div><div class="usage">/checkgang</div></div>
+            <div class="card"><div class="cmd">/myterritory</div><div class="desc">Ver território da sua gang</div><div class="usage">/myterritory</div></div>
+            <div class="card"><div class="cmd">/leavegang</div><div class="desc">Sair da gang atual</div><div class="usage">/leavegang</div></div>
+            <div class="card"><div class="cmd">/mapagangs</div><div class="desc">Alternar mapa de territórios de gangs</div><div class="usage">/mapagangs</div></div>
+            <div class="card"><div class="cmd">/diagterritory</div><div class="desc">Diagnóstico de território</div><div class="usage">/diagterritory</div></div>
+        </div>
+    </div>
+
+    <!-- DROGAS -->
+    <div class="section" id="drogas">
+        <div class="section-title"><span class="icon">🧪</span> Drogas & Mercado Negro</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/trapphone</div><div class="desc">Abrir/fechar trapphone (também F8)</div><div class="usage">/trapphone</div></div>
+            <div class="card"><div class="cmd">/reputacao</div><div class="desc">Ver sua reputação no mercado negro</div><div class="usage">/reputacao — ou /rep</div></div>
+            <div class="card"><div class="cmd">/minhasplantas</div><div class="desc">Ver blueprints/plantas que você aprendeu</div><div class="usage">/minhasplantas — ou /myblueprints</div></div>
+        </div>
+    </div>
+
+    <!-- VOZ & RÁDIO -->
+    <div class="section" id="voz">
+        <div class="section-title"><span class="icon">🎙️</span> Voz & Rádio</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/cycleproximity</div><div class="desc">Alternar proximidade da voz (também F11)</div><div class="usage">/cycleproximity</div></div>
+            <div class="card"><div class="cmd">/setvoiceintent [nível]</div><div class="desc">Definir intenção de voz</div><div class="usage">/setvoiceintent 2</div></div>
+            <div class="card"><div class="cmd">/vol [valor]</div><div class="desc">Definir volume da voz</div><div class="usage">/vol 50</div></div>
+        </div>
+        <br>
+        <table class="key-table">
+            <thead>
+                <tr>
+                    <th>Tecla</th>
+                    <th>Ação</th>
+                    <th>Resource</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">N</span></td><td>Push-to-talk (voz padrão)</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">Left Alt</span></td><td>Push-to-talk rádio</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">F11</span></td><td>Ciclar proximidade de voz</td><td><span class="tag tag-resource">pma-voice</span></td></tr>
+                <tr><td><span class="key-badge">INSERT</span></td><td>Abrir/Reconectar rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">DELETE</span></td><td>Sair do canal de rádio</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">Page Up</span></td><td>Canal de rádio +1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+                <tr><td><span class="key-badge">Page Down</span></td><td>Canal de rádio -1</td><td><span class="tag tag-resource">mm_radio</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- EMOTES -->
+    <div class="section" id="emotes">
+        <div class="section-title"><span class="icon">🕺</span> Emotes & Animações</div>
+        <table class="key-table">
+            <thead>
+                <tr>
+                    <th>Tecla</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">F5</span></td><td>Abrir menu de emotes</td></tr>
+                <tr><td><span class="key-badge">X</span></td><td>Cancelar emote atual</td></tr>
+                <tr><td><span class="key-badge">H</span></td><td>Mãos para cima (hands up)</td></tr>
+                <tr><td><span class="key-badge">B</span></td><td>Apontar (pointing)</td></tr>
+                <tr><td><span class="key-badge">U</span></td><td>Ragdoll (cair no chão)</td></tr>
+                <tr><td><span class="key-badge">Left Ctrl</span></td><td>Mudar postura (stance — agachar/deitar)</td></tr>
+                <tr><td><span class="key-badge">E</span></td><td>Tackle (segurar E enquanto corre em direção a alguém)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- INTERFACE -->
+    <div class="section" id="interface">
+        <div class="section-title"><span class="icon">🖥️</span> Interface & HUD</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/ox_lib</div><div class="desc">Abrir configurações do ox_lib</div><div class="usage">/ox_lib</div></div>
+            <div class="card"><div class="cmd">/cancelprogress</div><div class="desc">Cancelar barra de progresso ativa (também X)</div><div class="usage">/cancelprogress</div></div>
+            <div class="card"><div class="cmd">/closeBankUI</div><div class="desc">Fechar interface do banco (se travada)</div><div class="usage">/closeBankUI</div></div>
+            <div class="card"><div class="cmd">/clearprops</div><div class="desc">Limpar props presos no seu personagem</div><div class="usage">/clearprops</div></div>
+        </div>
+    </div>
+
+    <!-- INVENTÁRIO -->
+    <div class="section" id="inventario">
+        <div class="section-title"><span class="icon">🎒</span> Inventário & Itens</div>
+        <table class="key-table">
+            <thead>
+                <tr>
+                    <th>Tecla</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">F2</span></td><td>Abrir inventário principal</td></tr>
+                <tr><td><span class="key-badge">TAB</span></td><td>Inventário alternativo / Hotbar</td></tr>
+                <tr><td><span class="key-badge">K</span></td><td>Abrir inventário secundário (porta-malas, lixeira)</td></tr>
+                <tr><td><span class="key-badge">1</span></td><td>Hotbar slot 1</td></tr>
+                <tr><td><span class="key-badge">2</span></td><td>Hotbar slot 2</td></tr>
+                <tr><td><span class="key-badge">3</span></td><td>Hotbar slot 3</td></tr>
+                <tr><td><span class="key-badge">4</span></td><td>Hotbar slot 4</td></tr>
+                <tr><td><span class="key-badge">5</span></td><td>Hotbar slot 5</td></tr>
+                <tr><td><span class="key-badge">R</span></td><td>Recarregar arma equipada</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PROPRIEDADES -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🏠</span> Propriedades & Casas</div>
+        <table class="key-table">
+            <thead>
+                <tr>
+                    <th>Tecla</th>
+                    <th>Ação</th>
+                    <th>Contexto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="key-badge">E</span></td><td>Entrar na propriedade / Tocar campainha / Comprar</td><td>Perto da porta da propriedade</td></tr>
+                <tr><td><span class="key-badge">G</span></td><td>Abrir/Fechar garagem da propriedade</td><td>Perto da garagem da casa</td></tr>
+                <tr><td><span class="key-badge">E</span></td><td>Usar elevador</td><td>Perto de elevador</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ROUPAS -->
+    <div class="section">
+        <div class="section-title"><span class="icon">👔</span> Roupas & Aparência</div>
+        <div class="card-grid">
+            <div class="card"><div class="cmd">/joboutfits</div><div class="desc">Abrir menu de roupas do emprego</div><div class="usage">/joboutfits</div></div>
+            <div class="card"><div class="cmd">/gangoutfits</div><div class="desc">Abrir menu de roupas da gang</div><div class="usage">/gangoutfits</div></div>
+            <div class="card"><div class="cmd">/housingprops</div><div class="desc">Props de decoração de casa</div><div class="usage">/housingprops</div></div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    SARP Server — Guia do Jogador — Gerado em Fevereiro 2026
+</footer>
+
+<script>
+function filterAll() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card => {
+        const text = (card.textContent + ' ' + (card.dataset.search || '')).toLowerCase();
+        card.classList.toggle('hidden', query && !text.includes(query));
+    });
+    document.querySelectorAll('.key-table tbody tr').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.classList.toggle('hidden', query && !text.includes(query));
+    });
+}
+</script>
+
+</body>
+</html>
